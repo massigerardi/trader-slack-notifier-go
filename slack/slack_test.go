@@ -13,25 +13,25 @@ func Test_get(t *testing.T) {
 		token string
 	}
 	tests := []struct {
-		name string
-		args args
-		want *slackLib.Client
+		name     string
+		args     args
+		want     *slackLib.Client
 		wantSize int
 	}{
 		{
-			name:"found",
-			args:args{token:"my_token"},
-			want:slackLib.New("my_token"),
+			name:     "found",
+			args:     args{token: "my_token"},
+			want:     slackLib.New("my_token"),
 			wantSize: 1,
 		},
 		{
-			name:"notFound",
-			args:args{token:"my_token2"},
-			want:slackLib.New("my_token2"),
+			name:     "notFound",
+			args:     args{token: "my_token2"},
+			want:     slackLib.New("my_token2"),
 			wantSize: 2,
 		},
 	}
-	get("my_token")//pre-populate the clients
+	get("my_token") //pre-populate the clients
 	if len(clients) != 1 {
 		t.Errorf("Error while inserting first client")
 	}
@@ -55,57 +55,57 @@ func Test_SendMessage(t *testing.T) {
 		messageRequest model.MessageRequest
 	}
 	tests := []struct {
-		name   		string
-		fields 		fields
-		args   		args
-		url			string
-		response 	string
-		wantResult 	string
-		wantErr 	bool
+		name       string
+		fields     fields
+		args       args
+		url        string
+		response   string
+		wantResult string
+		wantErr    bool
 	}{
 		{
 			name: "ephemeral",
 			fields: fields{
 				client: slackLib.New("my_token"),
 			},
-			args: args{model.NewTextMessageRequest("my_token", "sender", "channel", "receiver", true, model.NewText("test"))},
-			response: `{"ok":true}`,
-			url: "https://slack.com/api/chat.postEphemeral",
-			wantErr:false,
-			wantResult:"",
+			args:       args{*model.NewTextMessageRequest("my_token", "sender", "channel", "receiver", true, model.NewText("test"))},
+			response:   `{"ok":true}`,
+			url:        "https://slack.com/api/chat.postEphemeral",
+			wantErr:    false,
+			wantResult: "",
 		},
 		{
 			name: "channel",
 			fields: fields{
 				client: slackLib.New("my_token"),
 			},
-			args: args{model.NewTextMessageRequest("my_token", "sender", "channel", "receiver", false, model.NewText("test"))},
-			response: "{\"ok\":true}",
-			url: "https://slack.com/api/chat.postMessage",
+			args:       args{*model.NewTextMessageRequest("my_token", "sender", "channel", "receiver", false, model.NewText("test"))},
+			response:   "{\"ok\":true}",
+			url:        "https://slack.com/api/chat.postMessage",
 			wantResult: "",
-			wantErr: false,
+			wantErr:    false,
 		},
 		{
 			name: "ephemeral_error",
 			fields: fields{
 				client: slackLib.New("my_token"),
 			},
-			args: args{model.NewTextMessageRequest("my_token", "sender", "channel", "receiver", true, model.NewText("test"))},
-			response: `{"ok":false, "error":"error"}`,
-			url: "https://slack.com/api/chat.postEphemeral",
-			wantErr:true,
-			wantResult:"",
+			args:       args{*model.NewTextMessageRequest("my_token", "sender", "channel", "receiver", true, model.NewText("test"))},
+			response:   `{"ok":false, "error":"error"}`,
+			url:        "https://slack.com/api/chat.postEphemeral",
+			wantErr:    true,
+			wantResult: "",
 		},
 		{
 			name: "channel_error",
 			fields: fields{
 				client: slackLib.New("my_token"),
 			},
-			args: args{model.NewTextMessageRequest("my_token", "sender", "channel", "receiver", false, model.NewText("test"))},
-			response: `{"ok":false, "error":"error"}`,
-			url: "https://slack.com/api/chat.postMessage",
+			args:       args{*model.NewTextMessageRequest("my_token", "sender", "channel", "receiver", false, model.NewText("test"))},
+			response:   `{"ok":false, "error":"error"}`,
+			url:        "https://slack.com/api/chat.postMessage",
 			wantResult: "",
-			wantErr: true,
+			wantErr:    true,
 		},
 	}
 	httpmock.Activate()
