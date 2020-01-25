@@ -2,8 +2,8 @@ package slack
 
 import (
 	"fmt"
+	"github.com/massigerardi/trader-slack-notifier-go/model"
 	slackLib "github.com/nlopes/slack"
-	"slack-notifier/model"
 )
 
 var clients = make(map[string]*(slackLib.Client))

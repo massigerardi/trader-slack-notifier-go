@@ -2,8 +2,8 @@ package services
 
 import (
 	"context"
-	"slack-notifier/model"
-	"slack-notifier/slack"
+	"github.com/massigerardi/trader-slack-notifier-go/model"
+	"github.com/massigerardi/trader-slack-notifier-go/slack"
 )
 
 type Notifier interface {
@@ -14,13 +14,13 @@ type Receiver interface {
 	sendStream(ctx context.Context, message model.MessageRequest) (result string, err error)
 }
 
-type notifier struct {}
+type notifier struct{}
 
-func NewNotifier() Notifier  {
+func NewNotifier() Notifier {
 	return notifier{}
 }
 
-func (notifier) SendMessage(ctx context.Context, message model.MessageRequest) (result string, err error)  {
+func (notifier) SendMessage(ctx context.Context, message model.MessageRequest) (result string, err error) {
 	result, err = slack.SendMessage(message)
 	return result, err
 }

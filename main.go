@@ -4,12 +4,12 @@ import (
 	"context"
 	"flag"
 	"fmt"
+	"github.com/massigerardi/trader-slack-notifier-go/kafka"
+	"github.com/massigerardi/trader-slack-notifier-go/services"
 	"log"
 	"net/http"
 	"os"
 	"os/signal"
-	"slack-notifier/kafka"
-	"slack-notifier/services"
 	"syscall"
 )
 

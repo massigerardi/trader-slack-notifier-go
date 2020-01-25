@@ -4,8 +4,8 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"slack-notifier/model"
-	"slack-notifier/services"
+	"github.com/massigerardi/trader-slack-notifier-go/model"
+	"github.com/massigerardi/trader-slack-notifier-go/services"
 	"strings"
 	"time"
 

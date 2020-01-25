@@ -3,8 +3,8 @@ package services
 import (
 	"context"
 	"github.com/jarcoal/httpmock"
+	"github.com/massigerardi/trader-slack-notifier-go/model"
 	"reflect"
-	"slack-notifier/model"
 	"testing"
 )
 

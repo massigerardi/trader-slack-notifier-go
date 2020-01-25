@@ -4,7 +4,7 @@ import (
 	"context"
 	"errors"
 	"github.com/go-kit/kit/endpoint"
-	"slack-notifier/model"
+	"github.com/massigerardi/trader-slack-notifier-go/model"
 )
 
 type Endpoints struct {

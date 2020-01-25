@@ -3,8 +3,8 @@ package services
 import (
 	"context"
 	"encoding/json"
+	"github.com/massigerardi/trader-slack-notifier-go/model"
 	"net/http"
-	"slack-notifier/model"
 )
 
 func decodeMessageRequest(ctx context.Context, r *http.Request) (interface{}, error) {

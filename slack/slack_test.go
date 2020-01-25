@@ -2,9 +2,9 @@ package slack
 
 import (
 	"github.com/jarcoal/httpmock"
+	"github.com/massigerardi/trader-slack-notifier-go/model"
 	slackLib "github.com/nlopes/slack"
 	"reflect"
-	"slack-notifier/model"
 	"testing"
 )
 
